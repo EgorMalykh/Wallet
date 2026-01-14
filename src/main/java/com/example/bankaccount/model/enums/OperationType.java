@@ -1,5 +1,6 @@
 package com.example.bankaccount.model.enums;
 
+import com.example.bankaccount.exception.InvalidOperationException;
 import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonValue;
 
@@ -15,7 +16,7 @@ public enum OperationType {
                 .filter(target -> target.name().equalsIgnoreCase(operation))
                 .findFirst()
                 .orElseThrow(() ->
-                        new IllegalArgumentException("Invalid operation type: " + operation)
+                        new InvalidOperationException("Invalid operation type: " + operation + ". Allowed: DEPOSIT, WITHDRAW")
                 );
     }
 
